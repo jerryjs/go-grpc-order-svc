@@ -30,11 +30,12 @@ func (s *Server) CreateOrder(ctx context.Context, req *pb.CreateOrderRequest) (*
 		Price:     product.Data.Price,
 		ProductId: product.Data.Id,
 		UserId:    req.UserId,
+		Quantity:  req.Quantity,
 	}
 
 	s.H.DB.Create(&order)
 
-	res, err := s.ProductSvc.DecreaseStock(req.ProductId, order.Id)
+	res, err := s.ProductSvc.DecreaseStock(req.ProductId, order.Id, order.Quantity)
 
 	if err != nil {
 		return &pb.CreateOrderResponse{Status: http.StatusBadRequest, Error: err.Error()}, nil
