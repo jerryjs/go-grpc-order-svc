@@ -2,7 +2,7 @@ module github.com/jerryjs/go-grpc-order-svc
 
 go 1.18
 
-replace github.com/jerryjs/go-grpc-order-svc => ./
+// replace github.com/jerryjs/go-grpc-order-svc => ./
 
 require google.golang.org/grpc v1.49.0
 
